@@ -1,5 +1,6 @@
 # VS Code
 **/.vscode/*
+**/.vscodeignore
 
 # Node
 **/node_modules/*
@@ -7,3 +8,5 @@
 
 # Test
 **/coverage
+
+*.log
