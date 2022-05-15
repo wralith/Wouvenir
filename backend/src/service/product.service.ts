@@ -2,7 +2,7 @@ import { Document, FilterQuery, QueryOptions, UpdateQuery } from 'mongoose'
 import ProductModel, { ProductDocument } from '../models/product.model'
 
 export async function createProduct(
-  input: Document<Omit<ProductDocument, 'createdAt' | 'updatedAt'>>
+  input: Document<Omit<ProductDocument, 'createdAt' | 'updatedAt' | 'productId' >>
 ) {
   return ProductModel.create(input)
 }
