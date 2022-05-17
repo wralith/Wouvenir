@@ -1,0 +1,76 @@
+.btn {
+  font-size: 1.2rem;
+  padding: 0.5rem;
+  border-radius: 0.3rem;
+  border: none;
+  transition: ease 300ms;
+  background-color: $primary;
+  color: $primary-content;
+  width: 10rem;
+  margin: auto;
+
+  &:hover {
+    background-color: scale-color($primary, $lightness: -20%);
+    cursor: pointer;
+  }
+  &:active {
+    background-color: scale-color($primary, $lightness: -30%);
+  }
+  &:disabled {
+    background-color: gray;
+    &:hover,
+    &:active {
+      background-color: gray;
+    }
+  }
+}
+
+.btn-secondary {
+  @extend .btn;
+  background-color: $secondary;
+  color: $secondary-content;
+
+  &:hover {
+    background-color: scale-color($secondary, $lightness: -20%);
+    cursor: pointer;
+  }
+  &:active {
+    background-color: scale-color($secondary, $lightness: -30%);
+  }
+}
+
+.btn-accent {
+  @extend .btn;
+  background-color: $accent;
+  color: $accent-content;
+
+  &:hover {
+    background-color: scale-color($accent, $lightness: -20%);
+    cursor: pointer;
+  }
+  &:active {
+    background-color: scale-color($accent, $lightness: -30%);
+  }
+}
+
+input {
+  padding: 0.5rem;
+  font-family: inherit;
+  border-radius: 0.3rem;
+  border: none;
+  transition: ease all 300ms;
+  &:focus{
+    outline: none;
+    background-color: $primary-content;
+  }
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
