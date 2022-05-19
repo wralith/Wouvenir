@@ -16,7 +16,7 @@ const { value: password } = useField('password')
 
 const onSubmit = handleSubmit(async (values, { resetForm }) => {
   try {
-    await axios.post(`${apiUrl}/api/sessions`, values, {withCredentials: true})
+    await axios.post('api/sessions', values)
   } catch (e) {
     console.log(e)
   }

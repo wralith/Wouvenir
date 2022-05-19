@@ -5,6 +5,8 @@
   
 Hopefully it will evolve into fullstack application.
 
+✅ Cookie based auth, register, login
+
 ----
 
 
@@ -15,3 +17,11 @@ pnpm install
 pnpm dev
 ```
 <small>Local MongoDB needed, otherwise change `backend/config/default.ts` </small>
+
+### Start Frontend app
+
+```
+cd backend
+pnpm install
+pnpm dev
+```

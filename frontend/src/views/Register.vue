@@ -29,7 +29,7 @@ const { value: passwordConfirmation } = useField('passwordConfirmation')
 
 const onSubmit = handleSubmit(async (values, { resetForm }) => {
   try {
-    await axios.post(`${apiUrl}/api/users`, values)
+    await axios.post('api/users', values)
   } catch (e) {
     console.log(e)
   }

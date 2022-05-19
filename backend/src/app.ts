@@ -3,6 +3,7 @@ import routes from './routes'
 import deserializeUser from './middleware/deserializeUser'
 import cors from 'cors'
 import config from 'config'
+import cookieParser from 'cookie-parser'
 
 export default function createApp() {
   const app = express()
@@ -14,6 +15,8 @@ export default function createApp() {
       credentials: true
     })
   )
+
+  app.use(cookieParser())
 
   app.use(deserializeUser)
 
