@@ -4,32 +4,19 @@ import { object, string } from 'yup'
 import axios from 'redaxios'
 
 const apiUrl = import.meta.env.VITE_API_URL
-const registerSchema = object({
-  name: string().min(3, 'Minimum 3 characters needed for name'),
-  email: string()
-    .email('Please enter a valid e-mail')
-    .required('Email is required')
-    .min(7, 'Please enter a valid e-mail'),
-  password: string()
-    .required('Password is required')
-    .min(7, 'Minimum 7 characters needed for password'),
-  passwordConfirmation: string()
-    .required('Password is required')
-    .test('passwords-match', 'Passwords must match', function (value) {
-      return this.parent.password === value
-    })
+const loginSchema = object({
+  email: string().required('Email is required'),
+  password: string().required('Password is required')
 })
 
-const { handleSubmit, errors, isSubmitting } = useForm({ validationSchema: registerSchema })
+const { handleSubmit, errors, isSubmitting } = useForm({ validationSchema: loginSchema })
 
-const { value: name } = useField('name')
 const { value: email } = useField('email')
 const { value: password } = useField('password')
-const { value: passwordConfirmation } = useField('passwordConfirmation')
 
 const onSubmit = handleSubmit(async (values, { resetForm }) => {
   try {
-    await axios.post(`${apiUrl}/api/users`, values)
+    await axios.post(`${apiUrl}/api/sessions`, values, {withCredentials: true})
   } catch (e) {
     console.log(e)
   }
@@ -40,19 +27,6 @@ const onSubmit = handleSubmit(async (values, { resetForm }) => {
 
 <template>
   <form @submit="onSubmit">
-    <div class="form-element">
-      <label for="name">Name</label>
-      <input
-        v-model="name"
-        name="name"
-        id="name"
-        placeholder="name"
-        :class="{ 'error-border': errors.name }"
-      />
-      <Transition name="fade">
-        <p class="error" v-if="errors.name">{{ errors.name }}</p>
-      </Transition>
-    </div>
     <div class="form-element">
       <label for="email">Email</label>
       <input
@@ -80,20 +54,7 @@ const onSubmit = handleSubmit(async (values, { resetForm }) => {
         <p class="error" v-show="errors.password">{{ errors.password }}</p>
       </Transition>
     </div>
-    <div class="form-element">
-      <label for="passwordConfirmation">Password Confirmation</label>
-      <input
-        v-model="passwordConfirmation"
-        name="passwordConfirmation"
-        id="passwordConfirmation"
-        type="password"
-        :class="{ 'error-border': errors.passwordConfirmation }"
-      />
-      <Transition name="fade">
-        <p class="error" v-if="errors.passwordConfirmation">{{ errors.passwordConfirmation }}</p>
-      </Transition>
-    </div>
-    <button class="btn" :disabled="isSubmitting">Register</button>
+    <button class="btn" :disabled="isSubmitting">Login</button>
   </form>
 </template>
 

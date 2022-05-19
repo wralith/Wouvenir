@@ -1,5 +1,6 @@
 export default {
   port: 1337,
+  origin: 'http://localhost:3000',
   dbUri: 'mongodb://127.0.0.1:27017/wouvenir-db',
   saltWorkFactor: 10,
   accessTokenTtl: '15m',

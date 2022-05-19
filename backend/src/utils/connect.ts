@@ -6,7 +6,7 @@ export default function connect() {
   const dbUri = config.get<string>('dbUri')
 
   return mongoose
-    .connect(dbUri)
+    .connect(dbUri, {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true})
     .then(() => {
       logger.info('DB Connected')
     })
